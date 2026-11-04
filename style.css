@@ -1,143 +1,27 @@
-/* Charity: water Brand Colors & Fonts
-
-Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
-
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
-
-Fonts:
-- Proxima Nova
-- Avenir
-
-*/
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 30px;
-  background-color: #f0f0f0;
-  color: #333;
-}
-
-.container {
-  max-width: 750px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-h1 img {
-  height: 50px;
-  margin-right: 15px;
-  display: block;
-}
-
-.game-instructions {
-  font-size: 18px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px;
-  background-color: #f5f5f5;
-  padding: 15px 0;
-  border-radius: 8px;
-}
-
-.stats p {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 0 auto;
-  max-width: 500px;
-}
-
-.grid-cell {
-  background-color: #e8e8e8;
-  border-radius: 8px;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.water-can-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  /* Ensure the wrapper is properly centered */
-}
-
-.water-can {
-  width: 100%;
-  height: 100%;
-  background-image: url('img/water-can.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  border-radius: 50%;
-  animation: popUp 0.5s cubic-bezier(0.17, 0.67, 0.34, 2);
-  transform-origin: center; /* Ensure scaling happens from the center */
-}
-
-@keyframes popUp {
-  0% {
-    transform: scale(0.5); /* Start scaling from the center */
-  }
-  100% {
-    transform: scale(1); /* End scaling at full size */
-  }
-}
-
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: block;
-  margin: 30px auto 0;
-  transition: background-color 0.2s;
-}
+:root{--yellow:#FFC907;--blue:#2E9DF7;--deep:#003A70;--sky:#E6F4FF;--dirty:#6B4A2B;--red:#F5402C;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Avenir Next","Proxima Nova",Helvetica,Arial,sans-serif;background:var(--sky);color:var(--deep);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+header{width:100%;background:var(--yellow);padding:.9rem 1rem;text-align:center}
+header h1{margin:0;font-size:clamp(1.3rem,4vw,2rem);letter-spacing:-.02em}
+header p{margin:.2rem 0 0;font-size:.95rem}
+.stats{display:flex;gap:1rem;margin:1rem;font-size:1.2rem;font-weight:700;flex-wrap:wrap;justify-content:center}
+.stats div{background:var(--white);padding:.5rem 1.1rem;border-radius:.6rem;min-width:7rem;text-align:center;border-bottom:4px solid var(--blue)}
+#score.bump{animation:bump .3s}
+#score.hurt{animation:hurt .3s;color:var(--red)}
+@keyframes bump{50%{transform:scale(1.25);color:var(--blue)}}
+@keyframes hurt{50%{transform:scale(1.25)}}
+#msg{min-height:1.6rem;font-weight:600;margin:0 1rem .5rem;text-align:center}
+#field{position:relative;width:min(92vw,640px);height:min(60vh,480px);background:linear-gradient(#cfeaff,#fff);border:3px solid var(--deep);border-radius:1rem;overflow:hidden;touch-action:manipulation}
+.drop{position:absolute;top:-60px;width:44px;height:58px;border:0;padding:0;cursor:pointer;background:var(--blue);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;animation:fall linear forwards}
+.drop.bad{background:var(--dirty)}
+.drop:focus-visible{outline:3px solid var(--yellow)}
+@keyframes fall{to{transform:translateY(calc(min(60vh,480px) + 80px))}}
+.actions{margin:1rem;display:flex;gap:.8rem}
+button.ctl{font:inherit;font-weight:700;padding:.7rem 1.6rem;border:0;border-radius:.5rem;background:var(--yellow);color:var(--deep);cursor:pointer}
+button.ctl:hover{background:#e6b506}
+#overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,58,112,.85);color:#fff;text-align:center;padding:1rem;z-index:5}
+#overlay.hidden{display:none}
+#overlay h2{margin:0 0 .4rem;font-size:1.8rem}
+.conf{position:fixed;top:-12px;width:10px;height:14px;z-index:20;pointer-events:none;animation:conf 2.4s ease-in forwards}
+@keyframes conf{to{transform:translateY(105vh) rotate(720deg);opacity:.8}}
+@media (prefers-reduced-motion:reduce){.conf{display:none}}

@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Water Quest</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water Drop | charity: water game</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Water Quest</h1>
-    <p class="game-instructions">Collect 20 items to complete the game!</p>
-    <div class="stats">
-      <p>Cans Collected: <span id="current-cans">0</span></p>
-      <p>Time Left: <span id="timer">30</span>s</p>
-    </div>
-    <div id="achievements" class="achievement"></div>
-    <div class="game-grid"></div>
-    <button id="start-game">Start Game</button>
+  <header>
+    <h1>Water Drop</h1>
+    <p>Clean water changes everything. Collect it.</p>
+  </header>
+
+  <div class="stats">
+    <div>Score: <span id="score">0</span></div>
+    <div>Time: <span id="time">30</span>s</div>
+    <div>Best: <span id="best">0</span></div>
   </div>
+  <div id="msg" aria-live="polite">Catch blue drops. Dodge the dirty brown ones.</div>
+
+  <div id="field">
+    <div id="overlay">
+      <h2 id="ot">Ready?</h2>
+      <p id="op">Tap clean blue drops for +1. Dirty drops cost you 3. Reach 20 points in 30 seconds to win.</p>
+      <button class="ctl" id="start">Start game</button>
+    </div>
+  </div>
+
+  <div class="actions"><button class="ctl" id="reset">Reset</button></div>
+
   <script src="script.js"></script>
 </body>
 </html>
