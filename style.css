@@ -1,27 +1,90 @@
-:root{--yellow:#FFC907;--blue:#2E9DF7;--deep:#003A70;--sky:#E6F4FF;--dirty:#6B4A2B;--red:#F5402C;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Avenir Next","Proxima Nova",Helvetica,Arial,sans-serif;background:var(--sky);color:var(--deep);min-height:100vh;display:flex;flex-direction:column;align-items:center}
-header{width:100%;background:var(--yellow);padding:.9rem 1rem;text-align:center}
-header h1{margin:0;font-size:clamp(1.3rem,4vw,2rem);letter-spacing:-.02em}
-header p{margin:.2rem 0 0;font-size:.95rem}
-.stats{display:flex;gap:1rem;margin:1rem;font-size:1.2rem;font-weight:700;flex-wrap:wrap;justify-content:center}
-.stats div{background:var(--white);padding:.5rem 1.1rem;border-radius:.6rem;min-width:7rem;text-align:center;border-bottom:4px solid var(--blue)}
-#score.bump{animation:bump .3s}
-#score.hurt{animation:hurt .3s;color:var(--red)}
-@keyframes bump{50%{transform:scale(1.25);color:var(--blue)}}
-@keyframes hurt{50%{transform:scale(1.25)}}
-#msg{min-height:1.6rem;font-weight:600;margin:0 1rem .5rem;text-align:center}
-#field{position:relative;width:min(92vw,640px);height:min(60vh,480px);background:linear-gradient(#cfeaff,#fff);border:3px solid var(--deep);border-radius:1rem;overflow:hidden;touch-action:manipulation}
-.drop{position:absolute;top:-60px;width:44px;height:58px;border:0;padding:0;cursor:pointer;background:var(--blue);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;animation:fall linear forwards}
-.drop.bad{background:var(--dirty)}
-.drop:focus-visible{outline:3px solid var(--yellow)}
-@keyframes fall{to{transform:translateY(calc(min(60vh,480px) + 80px))}}
-.actions{margin:1rem;display:flex;gap:.8rem}
-button.ctl{font:inherit;font-weight:700;padding:.7rem 1.6rem;border:0;border-radius:.5rem;background:var(--yellow);color:var(--deep);cursor:pointer}
-button.ctl:hover{background:#e6b506}
-#overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,58,112,.85);color:#fff;text-align:center;padding:1rem;z-index:5}
-#overlay.hidden{display:none}
-#overlay h2{margin:0 0 .4rem;font-size:1.8rem}
-.conf{position:fixed;top:-12px;width:10px;height:14px;z-index:20;pointer-events:none;animation:conf 2.4s ease-in forwards}
-@keyframes conf{to{transform:translateY(105vh) rotate(720deg);opacity:.8}}
-@media (prefers-reduced-motion:reduce){.conf{display:none}}
+/* charity: water brand colors
+   Yellow #FFC907 | Blue #2E9DF7 | Deep blue #003A70
+   Font: Montserrat (closest free match to Proxima Nova), Avenir as fallback */
+
+:root {
+  --yellow: #FFC907;
+  --blue: #2E9DF7;
+  --deep: #003A70;
+  --sky: #E6F4FF;
+  --dirty: #6B4A2B;
+  --red: #F5402C;
+  --white: #fff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Montserrat", "Proxima Nova", "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
+  background: var(--sky);
+  color: var(--deep);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header { width: 100%; background: var(--yellow); padding: .9rem 1rem; text-align: center; }
+header h1 { margin: 0; font-size: clamp(1.3rem, 4vw, 2rem); font-weight: 800; letter-spacing: -.02em; }
+header p { margin: .2rem 0 0; font-size: .95rem; font-weight: 600; }
+
+.stats { display: flex; gap: 1rem; margin: 1rem; font-size: 1.1rem; font-weight: 700; flex-wrap: wrap; justify-content: center; }
+.stats div { background: var(--white); padding: .5rem 1.1rem; border-radius: .6rem; min-width: 7rem; text-align: center; border-bottom: 4px solid var(--blue); }
+
+#score.bump { animation: bump .3s; }
+#score.hurt { animation: hurt .3s; color: var(--red); }
+@keyframes bump { 50% { transform: scale(1.25); color: var(--blue); } }
+@keyframes hurt { 50% { transform: scale(1.25); } }
+
+/* Difficulty buttons */
+.difficulty { display: flex; gap: .5rem; margin-bottom: .6rem; }
+.mode {
+  font: inherit; font-weight: 700; padding: .4rem 1.1rem; cursor: pointer;
+  border: 2px solid var(--deep); border-radius: 2rem; background: var(--white); color: var(--deep);
+}
+.mode.active { background: var(--deep); color: var(--white); }
+.mode:disabled { opacity: .5; cursor: not-allowed; }
+
+#msg { min-height: 1.6rem; font-weight: 600; margin: 0 1rem .5rem; text-align: center; }
+
+#field {
+  position: relative; width: min(92vw, 640px); height: min(60vh, 480px);
+  background: linear-gradient(#cfeaff, #fff); border: 3px solid var(--deep);
+  border-radius: 1rem; overflow: hidden; touch-action: manipulation;
+}
+
+.drop {
+  position: absolute; top: -60px; width: 44px; height: 58px; border: 0; padding: 0; cursor: pointer;
+  background: var(--blue); border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  animation: fall linear forwards;
+}
+.drop.bad { background: var(--dirty); }
+.drop:focus-visible { outline: 3px solid var(--yellow); }
+@keyframes fall { to { transform: translateY(calc(min(60vh, 480px) + 80px)); } }
+
+.actions { margin: 1rem; display: flex; gap: .8rem; }
+button.ctl {
+  font: inherit; font-weight: 700; padding: .7rem 1.6rem; border: 0; border-radius: .5rem;
+  background: var(--yellow); color: var(--deep); cursor: pointer;
+}
+button.ctl:hover { background: #e6b506; }
+
+#overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(0, 58, 112, .85); color: #fff; text-align: center; padding: 1rem; z-index: 5;
+}
+#overlay.hidden { display: none; }
+#overlay h2 { margin: 0 0 .4rem; font-size: 1.8rem; }
+#overlay p { max-width: 30rem; margin: 0 0 1rem; }
+
+/* Footer with charity: water links */
+footer { margin-top: auto; width: 100%; background: var(--deep); color: var(--white); text-align: center; padding: 1.2rem 1rem; }
+footer p { margin: .3rem 0; }
+footer a { color: var(--yellow); font-weight: 700; text-decoration: none; }
+footer a:hover, footer a:focus-visible { text-decoration: underline; }
+footer a.donate { background: var(--yellow); color: var(--deep); padding: .25rem .8rem; border-radius: 2rem; }
+
+.conf { position: fixed; top: -12px; width: 10px; height: 14px; z-index: 20; pointer-events: none; animation: conf 2.4s ease-in forwards; }
+@keyframes conf { to { transform: translateY(105vh) rotate(720deg); opacity: .8; } }
+@media (prefers-reduced-motion: reduce) { .conf { display: none; } }
