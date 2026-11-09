@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Water Drop | charity: water game</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <header>
@@ -13,10 +16,17 @@
   </header>
 
   <div class="stats">
-    <div>Score: <span id="score">0</span></div>
+    <div>Score: <span id="score">0</span> / <span id="goal">20</span></div>
     <div>Time: <span id="time">30</span>s</div>
     <div>Best: <span id="best">0</span></div>
   </div>
+
+  <div class="difficulty" role="group" aria-label="Difficulty">
+    <button class="mode" data-mode="easy">Easy</button>
+    <button class="mode active" data-mode="normal">Normal</button>
+    <button class="mode" data-mode="hard">Hard</button>
+  </div>
+
   <div id="msg" aria-live="polite">Catch blue drops. Dodge the dirty brown ones.</div>
 
   <div id="field">
@@ -28,6 +38,15 @@
   </div>
 
   <div class="actions"><button class="ctl" id="reset">Reset</button></div>
+
+  <footer>
+    <p>Every $1 helps bring clean water to people who need it. 💧</p>
+    <p>
+      <a href="https://www.charitywater.org/" target="_blank" rel="noopener">charitywater.org</a> ·
+      <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener" class="donate">Donate</a> ·
+      <a href="https://www.charitywater.org/our-work" target="_blank" rel="noopener">Our work</a>
+    </p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
